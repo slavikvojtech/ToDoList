@@ -1,0 +1,74 @@
+[
+  {
+    "id": "b51590c8-9620-4ce6-9098-d90466531c83",
+    "title": "Meditatio",
+    "due_time": "07:00",
+    "priority": "low",
+    "done": true,
+    "created_at": "2026-02-03T17:12:03.618222"
+  },
+  {
+    "id": "8cadd314-f930-4238-9eca-93facceac4bb",
+    "title": "Exercise",
+    "due_time": "7:20",
+    "priority": "low",
+    "done": false,
+    "created_at": "2026-02-03T17:12:22.109649"
+  },
+  {
+    "id": "99ca20bc-e5dc-43aa-830c-214e301e6515",
+    "title": "Breakfast",
+    "due_time": "7:40",
+    "priority": "low",
+    "done": false,
+    "created_at": "2026-02-03T17:12:49.967426"
+  },
+  {
+    "id": "42000cbf-a271-4c12-8d3d-b04f588336af",
+    "title": "Lunch",
+    "due_time": "12:00",
+    "priority": "low",
+    "done": false,
+    "created_at": "2026-02-03T17:12:58.004264"
+  },
+  {
+    "id": "7aafa944-bbb0-4c3f-acb5-3cd012427d75",
+    "title": "Dinner",
+    "due_time": "17:00",
+    "priority": "low",
+    "done": true,
+    "created_at": "2026-02-03T17:13:05.095482"
+  },
+  {
+    "id": "f2fa7987-bcd7-413e-9271-aaf504cb775b",
+    "title": "Coddy",
+    "due_time": "08:00-10:00",
+    "priority": "medium",
+    "done": false,
+    "created_at": "2026-02-03T17:13:27.813207"
+  },
+  {
+    "id": "e2341498-ce5f-4554-a7c2-e327cb739d41",
+    "title": "Call with Friend",
+    "due_time": "19:00",
+    "priority": "high",
+    "done": false,
+    "created_at": "2026-02-03T17:13:43.530285"
+  },
+  {
+    "id": "b93fb423-8f79-48a2-8a8b-2eb6be0217a2",
+    "title": "Reading a Book",
+    "due_time": "20:00-21:00",
+    "priority": "medium",
+    "done": false,
+    "created_at": "2026-02-03T17:14:01.131757"
+  },
+  {
+    "id": "defcacf2-c860-4d6a-8bfa-064f4a8abded",
+    "title": "Work",
+    "due_time": "09:00-18:00",
+    "priority": "high",
+    "done": false,
+    "created_at": "2026-02-03T17:14:16.159051"
+  }
+]

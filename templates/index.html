@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Circle TODOs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="card">
+        <form class="task-form" method="post" action="{{ url_for('add_task') }}">
+          <div class="form-main">
+            <label>
+              <span>Title</span>
+            <input type="text" name="title" placeholder="Write report" required autofocus />
+            </label>
+            <label>
+              <span>Duration / time</span>
+              <input type="text" name="due_time" placeholder="14:30 or 14:30-16:00" required />
+            </label>
+            <button type="submit" class="primary">Add</button>
+          </div>
+          <fieldset class="priority-dots">
+            <legend>Priority</legend>
+            <label class="dot low">
+              <input type="radio" name="priority" value="low" />
+              <span class="swatch" aria-label="Green"></span>
+              <span class="label">Low</span>
+            </label>
+            <label class="dot medium">
+              <input type="radio" name="priority" value="medium" checked />
+              <span class="swatch" aria-label="Blue"></span>
+              <span class="label">Medium</span>
+            </label>
+            <label class="dot high">
+              <input type="radio" name="priority" value="high" />
+              <span class="swatch" aria-label="Red"></span>
+              <span class="label">High</span>
+            </label>
+          </fieldset>
+        </form>
+      </section>
+
+      {% if has_done %}
+        <section class="actions">
+          <form method="post" action="{{ url_for('delete_done') }}">
+            <button class="ghost" type="submit">Remove all done</button>
+          </form>
+        </section>
+      {% endif %}
+
+      <section class="grid" aria-live="polite">
+        {% if tasks %}
+          {% for task in tasks %}
+            <div class="task" data-priority="{{ task.priority }}" data-done="{{ 'true' if task.done else 'false' }}" style="--size: {{ circle_size(task.title, task.priority) }}px;">
+              <div class="task-actions">
+                <form method="post" action="{{ url_for('toggle_task', task_id=task.id) }}">
+                  <button class="ghost" type="submit">Done</button>
+                </form>
+                <form class="priority-actions" method="post" action="{{ url_for('update_priority', task_id=task.id) }}">
+                  <button class="chip low" type="submit" name="priority" value="low">Low</button>
+                  <button class="chip medium" type="submit" name="priority" value="medium">Medium</button>
+                  <button class="chip high" type="submit" name="priority" value="high">High</button>
+                </form>
+              </div>
+              <div class="task-circle">
+                <div class="task-text">
+                  <strong>{{ task.title }}</strong>
+                  <span>{{ task.due_time }}</span>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="empty">
+            <p>No tasks yet. Add one above!</p>
+          </div>
+        {% endif %}
+      </section>
+    </main>
+    <script>
+      const tasks = document.querySelectorAll(".task");
+
+      function clearActive(except) {
+        tasks.forEach((task) => {
+          if (task !== except) {
+            task.classList.remove("active");
+          }
+        });
+      }
+
+      tasks.forEach((task) => {
+        const circle = task.querySelector(".task-circle");
+        const toggleForm = task.querySelector("form[action*='/toggle/']");
+
+        circle.addEventListener("click", () => {
+          const isActive = task.classList.contains("active");
+          clearActive(task);
+          task.classList.toggle("active", !isActive);
+        });
+
+        circle.addEventListener("dblclick", () => {
+          if (toggleForm) {
+            toggleForm.submit();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
